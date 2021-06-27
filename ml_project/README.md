@@ -4,18 +4,17 @@ Dataset
 ------------
 [Heart Disease UCI Dataset](https://www.kaggle.com/ronitf/heart-disease-uci)
 
-Train model
+Usage
 ------------
+### Train model
 ```bash
 python src/train_pipeline.py
 ```
-Make predictions
-------------
+### Make predictions
 ```bash
 python src/predict_pipeline.py
 ```
-Run tests
-------------
+### Run tests
 ```bash
 pip install pytest pytest-cov
 python -m pytest . -v --cov=src
