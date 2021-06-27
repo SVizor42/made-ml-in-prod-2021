@@ -46,7 +46,7 @@ def test_serialize_model(tmpdir: LocalPath):
     transformer = ColumnTransformer([])
     n_estimators = 10
     max_depth = 4
-    model = RandomForestClassifier(n_estimators=gitn_estimators, max_depth=max_depth)
+    model = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth)
     real_output = serialize_model(model, expected_output, transformer)
     assert real_output == expected_output
     assert os.path.exists
