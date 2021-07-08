@@ -50,10 +50,15 @@ def train_pipeline(training_pipeline_params: TrainingPipelineParams):
     logger.info("Building transformer...")
     transformer = build_transformer(training_pipeline_params.feature_params)
     logger.info("Fitting transformer...")
-    transformer.fit(train_df)
+    transformer.fit(
+        train_df.drop(training_pipeline_params.feature_params.target_col, axis=1)
+    )
 
     logger.info("Preparing train data...")
-    train_features = make_features(transformer, train_df)
+    train_features = make_features(
+        transformer,
+        train_df.drop(training_pipeline_params.feature_params.target_col, axis=1)
+    )
     train_target = extract_target(train_df, training_pipeline_params.feature_params)
     logger.info(f"train_features.shape is {train_features.shape}.")
     if train_target is not None:
@@ -65,7 +70,10 @@ def train_pipeline(training_pipeline_params: TrainingPipelineParams):
     )
 
     logger.info("Preparing validation data...")
-    val_features = make_features(transformer, val_df)
+    val_features = make_features(
+        transformer,
+        val_df.drop(training_pipeline_params.feature_params.target_col, axis=1)
+    )
     val_target = extract_target(val_df, training_pipeline_params.feature_params)
     logger.info(f"val_features.shape is {val_features.shape}.")
     if val_target is not None:

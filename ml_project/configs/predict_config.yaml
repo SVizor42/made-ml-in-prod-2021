@@ -18,5 +18,5 @@ feature_params:
     - "chol"
     - "thalach"
     - "oldpeak"
-  features_to_drop: []
+  features_to_drop: ["target"]
   target_col: "target"

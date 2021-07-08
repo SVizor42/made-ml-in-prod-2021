@@ -70,7 +70,7 @@ def build_transformer(params: FeatureParams) -> ColumnTransformer:
                 "numerical_pipeline",
                 build_numerical_pipeline(),
                 params.numerical_features,
-            ),
+            )
         ]
     )
     return transformer

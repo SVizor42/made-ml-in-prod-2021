@@ -37,7 +37,10 @@ def predict_pipeline(predict_pipeline_params: PredictPipelineParams):
     pipeline = deserialize_model(predict_pipeline_params.model_path)
 
     logger.info("Making predictions on the provided data...")
-    predicts = predict_model(pipeline, data)
+    predicts = predict_model(
+        pipeline,
+        data.drop(predict_pipeline_params.feature_params.target_col, axis=1)
+    )
 
     logger.info("Saving predictions...")
     data["predictions"] = predicts
